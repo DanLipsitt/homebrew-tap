@@ -1,4 +1,4 @@
-# Danlipsitt Tap
+# Some formulas for the Homebrew package manager
 
 ## How do I install these formulae?
 `brew install danlipsitt/tap/<formula>`
