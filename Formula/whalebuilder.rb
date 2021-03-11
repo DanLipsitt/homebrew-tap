@@ -1,25 +1,17 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook.html
-#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Whalebuilder < Formula
   desc "Debian package builder using Docker"
   homepage "https://www.uhoreg.ca/programming/debian/whalebuilder"
-  url "https://gitlab.com/uhoreg/whalebuilder/repository/debian%2F0.5.1/archive.zip"
-  version "0.5.1"
-  sha256 ""
+  url "https://vcs.uhoreg.ca/git/cgit/whalebuilder/snapshot/whalebuilder-debian/0.8.zip"
+  mirror "https://gitlab.com/uhoreg/whalebuilder/-/archive/debian/0.8/whalebuilder-debian-0.8.zip"
+  sha256 "746220b7b9c7a6961d7d69deb7d11ffa86bd82c2f299f257ef333229f842bc42"
 
-  depends_on "ruby"
   depends_on "gpgme"
+  depends_on "ruby"
 
   def install
-    # Remove unrecognized options if warned by configure
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
-    # system "cmake", ".", *std_cmake_args
-    system "make", "install" # if this fails, try separate make/make install steps
+    bin.install "#{version}/whalebuilder"
+    man1.install "#{version}/whalebuilder.1"
+    pkgshare.install Dir["#{version}/*.erb"], "#{version}/data.tar.gz"
   end
 
   test do
