@@ -8,10 +8,10 @@ class Odfundiff < Formula
   depends_on "haskell-stack" => :build
 
   def install
-    system "stack install", "--local-bin-path=#{prefix}/bin"
+    system "stack", "install", "--local-bin-path=#{bin}"
   end
 
   test do
-    system "stack test"
+    system "stack", "test"
   end
 end
